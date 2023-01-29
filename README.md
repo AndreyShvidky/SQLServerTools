@@ -3,10 +3,11 @@ SQL Server object dependency explorer
 
 # Main purpose
 Explore SQL server changing dependencies, i.e. get answers on such questions as:
-	- What tables this procedure deal with, and what operations it performs (select, insert, update or delete)
-	- What procedures deal with this table, and what operations they performs (select, insert, update or delete)
-	- What other procedures this procedure calls
-	- What other procedures calls this procedure
+<br>
+<li>What tables this procedure deal with, and what operations it performs (select, insert, update or delete)
+<li>What procedures deal with this table, and what operations they performs (select, insert, update or delete)
+<li>What other procedures this procedure calls
+<li>What other procedures calls this procedure
 
 Main SQL system views intended to help with this purpose
 <br>
@@ -28,7 +29,7 @@ and all its derived. Detect all referenced objects, including main targets: tabl
 <br>
 <b>UI application</b>
 <br>
-Just run, connect server< choose database, press Get button
+Just run, connect server, choose database, press Get button
 <br>
 <b>Console application</b>
 <br>
