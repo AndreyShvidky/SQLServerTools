@@ -29,9 +29,13 @@ and all its derived. Detect all referenced objects, including main targets: tabl
 <br>
 <b>UI application</b>
 <br>
+<a href="https://github.com/AndreyShvidky/SQLServerTools/releases/download/1.0.0/ObjectDependencyExplorerUI.7z" download>Download</a>
+<br>
 Just run, connect server, choose database, press Get button
 <br>
 <b>Console application</b>
+<br>
+<a href="https://github.com/AndreyShvidky/SQLServerTools/releases/download/1.0.0/ObjectDependencyExplorerConsole.7z" download>Download</a>
 <br>
 Depending on authentication type:
 <br>
