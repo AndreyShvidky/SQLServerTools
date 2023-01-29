@@ -1,0 +1,94 @@
+﻿<Window x:Class="DBConnectDialog.DBConnectWindow"
+		Name="wndDBConect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBConnectDialog"
+		xmlns:interfaces="clr-namespace:DBContextBase.Interfaces;assembly=DBContextBase"
+		d:DataContext="{d:DesignInstance {x:Type local:DBConnectViewModel}, IsDesignTimeCreatable=True}"
+		xmlns:EnumBindingHelper="clr-namespace:EnumBindingHelper"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Connect Database" MinHeight="240" Width="400" MinWidth="400" SizeToContent="Height" ResizeMode="NoResize" Icon="/DBConnectDialog;component/Images/DB.ico"
+		ShowInTaskbar="False"
+		FocusManager.FocusedElement="{Binding ElementName=tbServerName}">
+	<Window.Resources>
+		<EnumBindingHelper:EnumToIntConverter x:Key="EnumToIntConverter"/>
+		<EnumBindingHelper:EnumToDescriptionConverter x:Key="EnumToDescriptionConverter"/>
+	</Window.Resources>
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Картинки в шапке -->
+		<Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Source="/DBConnectDialog;component/Images/Logo.png"/>
+		<Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Width="23" Height="32" Source="/DBConnectDialog;component/Images/DB.ico" HorizontalAlignment="Right" Margin="10,0,10,0"/>
+		<Image Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Source="/DBConnectDialog;component/Images/Band.png"/>
+
+		<Grid Grid.Row="2" Grid.Column="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="150"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<!-- Server type -->
+			<Label Grid.Column="0" Grid.Row="0" Content="Server type:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+			<ComboBox x:Name="cmbServerType" Grid.Column="1" Grid.Row="0" Margin="0,2,5,2"
+				ItemsSource="{Binding Source={EnumBindingHelper:EnumBindingSourceExtension {x:Type interfaces:ServerTypes}}}"
+                SelectedValuePath="Value" DisplayMemberPath="Description"
+                SelectedValue="{Binding ServerType, Converter={StaticResource EnumToIntConverter}}"
+				TabIndex="0"/>
+
+			<!-- Server name -->
+			<Label Grid.Column="0" Grid.Row="1" Content="Server name:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+			<TextBox x:Name="tbServerName" Grid.Column="1" Grid.Row="1" Text="{Binding Path=ServerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,5,2" TabIndex="1"/>
+
+			<!-- Authentication -->
+			<Label Grid.Column="0" Grid.Row="2" Content="Authentication:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+			<ComboBox x:Name="cmbAuthentication" Grid.Column="1" Grid.Row="2" Margin="0,2,5,2"
+				ItemsSource="{Binding Source={EnumBindingHelper:EnumBindingSourceExtension {x:Type interfaces:AuthenticateTypes}}}"
+                SelectedValuePath="Value" DisplayMemberPath="Description"
+                SelectedValue="{Binding AuthenticateType, Converter={StaticResource EnumToIntConverter}}"
+				TabIndex="2"/>
+
+			<!-- Login -->
+			<Label Grid.Column="0" Grid.Row="3" Content="Login:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+			<TextBox x:Name="tbLogin" Grid.Column="1" Grid.Row="3" Text="{Binding Path=Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsLoginEnabled}" Margin="20,2,5,2" TabIndex="3"/>
+
+			<!-- Password -->
+			<Label Grid.Column="0" Grid.Row="4" Content="Password:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+			<PasswordBox x:Name="pwbPassword" Grid.Column="1" Grid.Row="4" PasswordChar="•" IsEnabled="{Binding Path=IsPasswordEnabled}" PasswordChanged="OnPasswordChanged" Margin="20,2,5,2" TabIndex="4"/>
+
+			<Grid Grid.Row="5" Grid.Column="1" Margin="70,0,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<!-- OK, Cancel -->
+				<Button Name="btnConnect" Grid.Column="0" Grid.Row="0" Content="Connect" IsDefault="True" Command="{Binding TryConnectCommand}" CommandParameter="{Binding ElementName=wndDBConect}" Width="70" Margin="0,20,5,5" TabIndex="5"/>
+				<Button Name="btnCancel" Grid.Column="1" Grid.Row="0" Content="Cancel" IsCancel="True" Click="OnCancelButtonClick" Width="70" Margin="0,20,5,5" TabIndex="6"/>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>

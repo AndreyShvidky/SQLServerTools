@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ObjectDependencyExplorerConsole": {
+        "commandName": "Project",
+        "commandLineArgs": "-S (local) -E -D Northwind"
+    }
+  }
+}
