@@ -28,6 +28,8 @@ and all its derived. Detect all referenced objects, including main targets: tabl
 <br>
 <b>UI application</b>
 <br>
+Just run, connect server< choose database, press Get button
+<br>
 <b>Console application</b>
 <br>
 Depending on authentication type:
@@ -50,4 +52,6 @@ For example:
 This table is generated in console and in UI executables.
 
 UI gives two tabs, where answes on two main questions can be obtained:
+![Tab1](https://user-images.githubusercontent.com/31736985/215359707-47ee8c2a-d109-4f22-8b61-bca91ebd65b5.PNG)
+![Tab2](https://user-images.githubusercontent.com/31736985/215359710-84b06ecd-f53b-417d-a589-fa7f5b5f7827.PNG)
 
